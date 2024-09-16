@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DaynamicCounter from "./DaynamicCounter";
 
 export default function ProductCard(props) {
   let [count, setCount] = useState(0);
@@ -8,6 +9,7 @@ export default function ProductCard(props) {
   const handlerRemove = () => {
     setCount(count - 1);
   };
+
   return (
     <>
       <div className="card h-100">
@@ -34,6 +36,7 @@ export default function ProductCard(props) {
               <>
                 <span>{count}</span>
 
+                <DaynamicCounter />
                 <button onClick={handlerRemove} className="btn btn-danger">
                   Remove
                 </button>

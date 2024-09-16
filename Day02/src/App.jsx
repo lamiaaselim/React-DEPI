@@ -1,17 +1,21 @@
+import { Route, Routes } from "react-router";
 import "./app.css";
 import MyFooter from "./components/MyFooter";
 import MyNav from "./components/MyNav";
-import MySlider from "./components/MySlider";
-import ProductSection from "./components/ProductSection";
+import Home from "./pages/Home";
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 
 /*eslint-disable*/
 function App() {
-
   return (
     <>
       <MyNav />
-      <MySlider />
-      <ProductSection />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <MyFooter />
     </>
   );
