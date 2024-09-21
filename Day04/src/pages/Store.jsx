@@ -1,10 +1,10 @@
 import React from "react";
 import ProductSection from "../components/ProductSection";
 
-export default function Store() {
+export default function Store({cartCount , setCartCount}) {
   return (
     <>
-      <ProductSection />
+      <ProductSection cartCount={cartCount} setCartCount={setCartCount} />
     </>
   );
 }

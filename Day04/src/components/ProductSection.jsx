@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { getAllProducts } from "../API/product";
 
-export default function ProductSection() {
+export default function ProductSection({cartCount, setCartCount}) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -28,6 +28,8 @@ export default function ProductSection() {
                 description={product.category}
                 price={product.price}
                 image={product.image}
+                cartCount= {cartCount}
+                setCartCount= {setCartCount}
               />
             </div>
           ))}
