@@ -3,10 +3,10 @@ import MyNav from "../components/MyNav";
 import MyFooter from "../components/MyFooter";
 import { Outlet } from "react-router";
 
-export default function Layout({ cartCount }) {
+export default function Layout() {
   return (
     <>
-      <MyNav cartCount={cartCount} />
+      <MyNav />
 
       <Outlet />
       <MyFooter />

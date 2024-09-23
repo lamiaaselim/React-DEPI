@@ -4,15 +4,21 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter } from "react-router-dom";
-import { ProductsContextProvider } from "./Context/Product";
+import { Provider } from "react-redux";
+// import { ProductsContextProvider } from "./Context/Product";
+import {store} from "./Redux/store"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
-    <ProductsContextProvider>
+    {/* <ProductsContextProvider> */}
+
+    <Provider store={store}>
       <App />
-    </ProductsContextProvider>
+    </Provider>
+
+    {/* </ProductsContextProvider> */}
   </BrowserRouter>
   // </React.StrictMode>
 );

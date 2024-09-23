@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout cartCount={cartCount} />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<MyHome />} />
           <Route path="/products" element={<Store cartCount={cartCount} setCartCount= {setCartCount} />} />
           <Route path="/products/:id" element={<ProductDetails />} />

@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-export default function MyNav({ cartCount }) {
+export default function MyNav() {
+  const data = useSelector((state) => state.cartCounter.value);
   return (
     <>
       <nav className="navbar navbar-expand-md bg-body-tertiary">
@@ -9,8 +11,7 @@ export default function MyNav({ cartCount }) {
           <NavLink className="navbar-brand" to="/">
             Navbar
           </NavLink>
-          <h5> {cartCount}</h5>
-
+          <strong>redux: {data}</strong>
           <button
             className="navbar-toggler"
             type="button"

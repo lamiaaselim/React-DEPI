@@ -1,7 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 // import DynamicCounter from "./DynamicCounter";
 import { useNavigate } from "react-router";
-import { ProductsContext } from "../Context/Product";
+import { decCartCounter, incCartCounter } from "../Redux/Slices/cartCounterSlicer";
+// import { ProductsContext } from "../Context/Product";
 
 export default function ProductCard({
   id,
@@ -13,17 +15,20 @@ export default function ProductCard({
   setCartCount,
 }) {
   const navigate = useNavigate();
-  const {cartNums, setCartNums} = useContext(ProductsContext)
+  const dispatch = useDispatch();
+  // const {cartNums, setCartNums} = useContext(ProductsContext)
   let [count, setCount] = useState(0);
   const handlerAdd = () => {
     setCount(count + 1);
-    setCartCount(cartCount + 1);
-    setCartNums(cartNums +1)
+    // setCartCount(cartCount + 1);
+    // setCartNums(cartNums +1)
+    dispatch(incCartCounter())
   };
   const handlerRemove = () => {
     setCount(count - 1);
-    setCartCount(cartCount - 1);
-    setCartNums(cartNums -1)
+    // setCartCount(cartCount - 1);
+    // setCartNums(cartNums -1)
+    dispatch(decCartCounter())
   };
   const gotoDetails = (id) => {
     navigate(`${id}`);
@@ -32,7 +37,7 @@ export default function ProductCard({
   return (
     <>
       <div className="card h-100">
-        {cartNums}
+        {/* {cartNums} */}
         <img
           src={image}
           className="card-img-top"
