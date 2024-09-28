@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { getAllProducts } from "./API/product";
 import { useDispatch } from "react-redux";
 import { setProducts } from "./Redux/Slices/productSlicer";
+import Cart from "./pages/Cart";
 
 /*eslint-disable*/
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<MyHome />} />
           <Route path="/products" element={<Store cartCount={cartCount} setCartCount= {setCartCount} />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
