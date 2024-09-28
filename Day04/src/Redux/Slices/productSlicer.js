@@ -1,13 +1,37 @@
-// 1. reducer + 2. actions 
+// 1. reducer + 2. actions
 
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { value: [] }
+const initialState = { value: [], arrWithCount: [] };
 
 const productSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
-  reducers: { },
-})
+  reducers: {
+    setProducts: (state, action) => {
+      state.value = action.payload;
+      state.arrWithCount = state.value.map((product) => ({
+        ...product,
+        count: 0,
+      }));
+    },
+    incProductCount: (state, action) => {
+      state.arrWithCount = state.arrWithCount.map((product) =>
+        action.payload === product.id
+          ? { ...product, count: product.count + 1 }
+          : product
+      );
+    },
+    decProductCount: (state, action) => {
+      state.arrWithCount = state.arrWithCount.map((product) =>
+        action.payload === product.id
+          ? { ...product, count: product.count - 1 }
+          : product
+      );
+    },
+  },
+});
 
-export default productSlice.reducer
+export default productSlice.reducer;
+
+export const { setProducts, incProductCount , decProductCount} = productSlice.actions;

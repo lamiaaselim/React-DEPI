@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
-import { getAllProducts } from "../API/product";
+import { useSelector } from "react-redux";
 
-export default function ProductSection({cartCount, setCartCount}) {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const data = await getAllProducts();
-      setProducts(data);
-    })();
-  }, []);
+export default function ProductSection({ cartCount, setCartCount }) {
+  const products = useSelector((state) => state.products.arrWithCount);
 
   return (
     <>
@@ -24,12 +17,13 @@ export default function ProductSection({cartCount, setCartCount}) {
             <div key={product.id} className="col-md-4">
               <ProductCard
                 id={product.id}
+                count= {product.count}
                 title={product.title}
                 description={product.category}
                 price={product.price}
                 image={product.image}
-                cartCount= {cartCount}
-                setCartCount= {setCartCount}
+                cartCount={cartCount}
+                setCartCount={setCartCount}
               />
             </div>
           ))}

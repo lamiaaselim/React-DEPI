@@ -6,11 +6,21 @@ import Login from "./pages/Login";
 import Layout from "./pages/Layout";
 import Store from "./pages/Store";
 import ProductDetails from "./pages/ProductDetails";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllProducts } from "./API/product";
+import { useDispatch } from "react-redux";
+import { setProducts } from "./Redux/Slices/productSlicer";
 
 /*eslint-disable*/
 function App() {
   const [cartCount, setCartCount]= useState(0);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    (async () => {
+      const data = await getAllProducts();
+      dispatch(setProducts(data));
+    })();
+  }, []);
   return (
     <>
       <Routes>

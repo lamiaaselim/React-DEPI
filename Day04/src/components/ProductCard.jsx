@@ -1,34 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-// import DynamicCounter from "./DynamicCounter";
 import { useNavigate } from "react-router";
 import { decCartCounter, incCartCounter } from "../Redux/Slices/cartCounterSlicer";
-// import { ProductsContext } from "../Context/Product";
+import { decProductCount, incProductCount } from "../Redux/Slices/productSlicer";
+
 
 export default function ProductCard({
   id,
+  count,
   title,
   description,
   price,
   image,
-  cartCount,
-  setCartCount,
 }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const {cartNums, setCartNums} = useContext(ProductsContext)
-  let [count, setCount] = useState(0);
-  const handlerAdd = () => {
-    setCount(count + 1);
-    // setCartCount(cartCount + 1);
-    // setCartNums(cartNums +1)
+
+
+  const handlerAdd = (id) => {
     dispatch(incCartCounter())
+    dispatch(incProductCount(id))
+
   };
-  const handlerRemove = () => {
-    setCount(count - 1);
-    // setCartCount(cartCount - 1);
-    // setCartNums(cartNums -1)
+  const handlerRemove = (id) => {
     dispatch(decCartCounter())
+    dispatch(decProductCount(id))
+
   };
   const gotoDetails = (id) => {
     navigate(`${id}`);
@@ -52,7 +49,7 @@ export default function ProductCard({
           <div className="d-flex justify-content-evenly">
             {/* <button onClick={handlerAdd} className={`btn btn-primary ${count ? '' :`w-100`}`}> */}
             <button
-              onClick={handlerAdd}
+              onClick={()=>handlerAdd(id)}
               className="btn btn-primary"
               style={{ width: count ? "" : "100%" }}
             >
@@ -64,7 +61,7 @@ export default function ProductCard({
 
                 {/* <DynamicCounter /> */}
 
-                <button onClick={handlerRemove} className="btn btn-danger">
+                <button onClick={()=>handlerRemove(id)} className="btn btn-danger">
                   Remove
                 </button>
               </>
